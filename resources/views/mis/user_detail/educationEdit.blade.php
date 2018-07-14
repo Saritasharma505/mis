@@ -12,8 +12,15 @@
     <!-- Main CSS-->
     {!!View('partials.include_css')!!}
  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+
    </head>
-  
+    
+
+  </head>
   
   <body class="app sidebar-mini rtl">
     <!-- Navbar-->
@@ -32,53 +39,70 @@
   <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-tasks"></i> User Professional Information </h1>
+          <h1><i class="fa fa-graduation-cap "></i> User Education </h1>
         </div>
       </div>
       <div class="row  tile">
       <!--   <a href="#" class="btn btn-primary fa fa-plus add_course">ADD</a> -->
        <a href="{{URL::previous()}}" class="fa fa-arrow-circle-left btn btn-danger"> Back</a>
         <div class="col-md-12">
-          <form action="{{url('/user-professional/update')}}" method="post" autocomplete="off">
+          <form action="{{url('/user-education/update')}}" method="post" autocomplete="off">
 
             {{ csrf_field() }}
           <ul style="list-style-type: none;" class="education_form">
             <li>
               <div class="row">
             <div class="col-md-12">
-              
+               <div class="col-md-4"> 
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Course Name</label>
+                    <select class="form-control" name="edu_option" id="edu_option">
+                      <option >Select Course</option> 
+                      @foreach($education_options as $edu)
+                      <option value="{{$edu->id}}">{{$edu->name}}</option> 
+                     @endforeach
+ 
+                    </select>
+                </div>
+             </div>
             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-            <div class="col-md-4"> 
+               <div class="col-md-2"> 
               <div class="form-group">
-                    <label for="exampleInputEmail1">Company Name</label>
-                    <input class="form-control" id="company" name="company" type="text" aria-describedby="emailHelp" placeholder="Company Name">
+                    <label for="exampleInputEmail1">Start Year</label>
+                    <input class="form-control date-own" id="strtyear" name="strtyear" type="text" aria-describedby="emailHelp" placeholder="Start Year">
+                </div>
+             </div>
+              <div class="col-md-2"> 
+              <div class="form-group">
+                    <label for="exampleInputEmail1">End Year</label>
+                    <input class="form-control date-own" id="endyear" name="endyear" type="text" aria-describedby="emailHelp" placeholder="End Year">
                 </div>
              </div>
               <div class="col-md-4"> 
               <div class="form-group">
-                    <label for="exampleInputEmail1">From</label>
-                    <input class="form-control demoDate" id="fromdate" name="fromdate" type="text" aria-describedby="emailHelp" placeholder="From">
-                </div>
-             </div>
-              <div class="col-md-4"> 
-              <div class="form-group">
-                    <label for="exampleInputEmail1">To</label>
-                    <input class="form-control demoDate" id="todate" name="todate" type="text" aria-describedby="emailHelp" placeholder="To">
+                    <label for="exampleInputEmail1">College/Institution</label>
+                    <input class="form-control" id="college" name="college" type="text" aria-describedby="emailHelp" placeholder="College/Institution">
                 </div>
              </div>
 
-              <div class="col-md-5"> 
+              <div class="col-md-3 "> 
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Designation</label>
-                    <input class="form-control" id="designation1" name="designation1" type="text" aria-describedby="emailHelp" placeholder="Designation">
+                    <label for="exampleInputEmail1">Specialization</label>
+                    <input class="form-control" id="specialization" name="specialization" type="text" aria-describedby="emailHelp" placeholder="Specialization">
                 </div>
              </div>
-              <div class="col-md-7 "> 
+              <div class="col-md-3 "> 
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Company Address</label>
-                    <textarea class="form-control" name="address" id="address" placeholder="Company Address" rows="4"></textarea>
+                    <label for="exampleInputEmail1">Percentage/Grades</label>
+                    <input class="form-control" id="percentage" name="percentage" type="text" aria-describedby="emailHelp" placeholder="Percentage(%)">
+                </div>
              </div>
-             
+              <div class="col-md-3 "> 
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Added By</label>
+                    <input class="form-control" id="addedby" name="addedby" type="text" aria-describedby="emailHelp" placeholder="Added By">
+                </div>
+             </div>
              
             </div>
           </div>
@@ -125,16 +149,7 @@ $('.education_form').on('click', '.remove_education', function(e) {
 
 <script type="text/javascript">
             // When the document is ready
-            $(document).ready(function () {
-                
-                $('.example1').datepicker({
-                    minViewMode: 'years',
-                    autoclose: true,
-                     format: 'yyyy'
-                });  
-            
-            });
-        </script>
+         
     
      <script type="text/javascript">
       $('.date-own').datepicker({

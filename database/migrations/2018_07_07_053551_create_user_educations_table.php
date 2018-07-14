@@ -16,6 +16,7 @@ class CreateUserEducationsTable extends Migration
         Schema::create('user_educations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->integer('edu_option')->unsigned();
             $table->string('course');
             $table->string('strtyear');
             $table->string('endyear');
@@ -31,6 +32,9 @@ class CreateUserEducationsTable extends Migration
 
         Schema::table('user_educations', function($table) {
             $table->foreign('user_id')->references('id')->on('users');
+        });
+        Schema::table('user_educations', function($table) {
+            $table->foreign('edu_option')->references('id')->on('education_options');
         });
     }
 

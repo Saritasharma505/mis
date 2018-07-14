@@ -23,13 +23,25 @@ Route::get('/dashboard', 'HomeController@dashboard');
 
 //user-details routes
 Route::get('/user-details', 'UserDetailController@index')->name('user.index');
-Route::get('/user-details/edit', 'UserDetailController@create');
-Route::get('/user-education/edit', 'UserDetailController@education');
-Route::post('/user-education/update', 'UserDetailController@educationUpdate');
+Route::get('/user-education/add', 'UserDetailController@education');
+/*Route::get('/user-education/edit', 'UserDetailController@educationedit');
+*/
+Route::post('/user-education/update', 'UserDetailController@educationAdd');
 Route::post('/user-details/store', 'UserDetailController@store');
 Route::get('/user-details/edit/{id}', 'UserDetailController@edit');
 Route::get('/user-professional', 'UserDetailController@professional');
-Route::post('/user-professional/update', 'UserDetailController@professionalUpdate');
+Route::post('/user-professional/update', 'UserDetailController@professionalAdd');
+Route::get('/user-official', 'UserDetailController@official');
+Route::post('/user-official/add', 'UserDetailController@officialAdd');
+Route::get('/user-personal', 'UserDetailController@personal');
+Route::post('/user-personal/add', 'UserDetailController@personalAdd');
+Route::get('/user-family', 'UserDetailController@family');
+Route::post('/user-family/add', 'UserDetailController@familyAdd');
+
+
+
+
+
 
 
 

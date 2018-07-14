@@ -65,23 +65,6 @@ class EOFController extends Controller
         return redirect()->route('eof.index');
      
 
-        /*
-
-      
-         $filename=$id.$image->getClientOriginalName();
-         echo "fghj";exit();
-         dd($filename);
-
-        $sip=\Request::ip();
-        $id=Auth::user()->id;
-
-
-
-        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
-        $destinationPath = public_path('/images');
-        $image->move($destinationPath, $input['imagename']);
-
-        $data=HallOfFame::create(['user_id'=>$id,'empname'=>$empname,'month'=>$month,'department'=>$department,'addedby'=>$addedby,'sip'=>$sip]);*/
     }
 
     /**

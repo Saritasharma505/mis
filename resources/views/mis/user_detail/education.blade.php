@@ -44,9 +44,9 @@
       </div>
       <div class="row  tile">
       <!--   <a href="#" class="btn btn-primary fa fa-plus add_course">ADD</a> -->
-       <a href="{{URL::previous()}}" class="fa fa-arrow-circle-left btn btn-primary"> Back</a>
+       <a href="{{URL::previous()}}" class="fa fa-arrow-circle-left btn btn-danger"> Back</a>
         <div class="col-md-12">
-          <form action="{{url('/user-education/update')}}" method="post">
+          <form action="{{url('/user-education/update')}}" method="post" autocomplete="off">
 
             {{ csrf_field() }}
           <ul style="list-style-type: none;" class="education_form">
@@ -56,14 +56,11 @@
                <div class="col-md-4"> 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Course Name</label>
-                    <select class="form-control" name="course" id="course">
-                      <option>Select Course</option> 
-                      <option>10th</option> 
-                      <option>12th</option> 
-                      <option>Graducation</option>               
-                      <option>Post Graducation</option> 
-                      <option>Diploma/Certificate</option> 
-                      <option>Other</option> 
+                    <select class="form-control" name="edu_option" id="edu_option">
+                      <option >Select Course</option> 
+                      @foreach($education_options as $edu)
+                      <option value="{{$edu->id}}">{{$edu->name}}</option> 
+                     @endforeach
  
                     </select>
                 </div>
@@ -113,7 +110,7 @@
         </ul>
        
     <div class="tile-footer">
-              <button class="btn btn-primary fa fa-save" type="submit">  Submit</button>
+              <button class="btn btn-success fa fa-save" type="submit">  Submit</button>
            
             </div>
             </form> 
