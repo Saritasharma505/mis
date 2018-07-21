@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Leave;
 use Session;
 use Auth;
+use DateTime;
 
 class LeaveController extends Controller
 {
@@ -38,19 +39,20 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
-        
+
+      
         $approvalfrom = $request->Input('approvalfrom');
            $approvalfrom_array=implode(",", $approvalfrom);
          $ip= \Request::ip();
          $id=Auth::user()->id;
-         
 
-          $name = $request->Input('name');
+
+        $name = $request->Input('name');
         $email = $request->Input('email');
         $mobile = $request->Input('name');
-        $leavefrom = $request->Input('leavefrom');
-        $leaveto = $request->Input('leaveto');
-        $totdays = $request->Input('totdays');
+       $leavefrom = $request->Input('leavefrom');
+       $leaveto = $request->Input('leaveto');
+       $totdays = $request->Input('totdays');
         $leaveoff = $request->Input('leaveoff');
         $leavetype=implode(',', $leaveoff);
         $reason = $request->Input('reason');

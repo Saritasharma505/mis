@@ -79,8 +79,12 @@
 
 
     <script type="text/javascript">
+
+      var dateToday = new Date();
+      
       $('.demoDate').datepicker({
         format: "dd/mm/yyyy",
+         minDate: dateToday,
         autoclose: true,
         todayHighlight: true
       });

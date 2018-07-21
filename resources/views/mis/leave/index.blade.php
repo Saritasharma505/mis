@@ -24,7 +24,8 @@
    <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-th-list"></i>Leave Management</h1>
+          <h4><i class="fa fa-th-list"></i>Leave Management  <a href="{{url('/leave-add')}}" class="btn btn-primary fa fa-plus">ADD Leave Request</a></h4>
+
         </div>
         <ul class="app-breadcrumb breadcrumb side">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -34,7 +35,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-            <a href="{{url('/leave-add')}}" class="btn btn-primary fa fa-plus btn-lg">ADD Leave Request</a>
+           
 
           <div class="tile">
             <div class="tile-body">
@@ -64,7 +65,7 @@
                     <th>Start Date</th>
                     <th >End Date </th>
                     <th>Reason</th>
-                    <th>Status</th>
+                    <th width="20%">Status</th>
                     <th style="text-align: center;">Approval From</th>
                     <th style="width: 20%">Action</th>
                   </tr>

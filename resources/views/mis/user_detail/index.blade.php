@@ -98,7 +98,7 @@
       
     </div>
      <div class="col-md-9 tile">
-       <h3 class="tile-title" style="font-family: Times New Roman">OFFICIAL INFORMATION  <a class="btn btn-success fa fa-plus" href="{{url('user-details.family')}}"></a></h3>
+       <h3 class="tile-title" style="font-family: Times New Roman">OFFICIAL INFORMATION  <a class="btn btn-success fa fa-pencil" href="{{url('/user-official')}}"></a></h3>
             <table class="table">
             <tr>
               <th>Email ID</th>

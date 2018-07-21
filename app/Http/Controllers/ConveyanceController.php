@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use Session;
+use App\Conveyance;
 
 class ConveyanceController extends Controller
 {
@@ -13,7 +16,9 @@ class ConveyanceController extends Controller
      */
     public function index()
     {
-        return view('mis.conveyance.index');
+      $id=Auth::user()->id;
+       $conveyance=Conveyance::where('user_id',$id)->get();
+        return view('mis.conveyance.index',compact('conveyance'));
 
     }
 
@@ -24,7 +29,7 @@ class ConveyanceController extends Controller
      */
     public function create()
     {
-         return view('mis.conveyance.add');
+         return view('mis.conveyance.save');
     }
 
 
@@ -38,7 +43,40 @@ class ConveyanceController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+     
+      $count = $request->input('tcount');
+
+      for ($i=1; $i <= $count ; $i++) { 
+         $file = $request->file('uploadfile'.$i);
+         if ($request->hasFile('uploadfile'.$i)) {
+             $filename =$i.$file->getClientOriginalName();
+               $file->storeAs('/public/conveyance', $filename);
+         }               
+      }
+
+      for ($i=1; $i <= $count ; $i++) { 
+        
+          $conveyance= new Conveyance;        
+          $conveyance->user_id = Auth::user()->id;
+          $conveyance->con_date= $request->input('date'.$i);
+          $conveyance->reason= $request->input('reason'.$i);
+          $conveyance->disfrom= $request->input('travelfrom'.$i);
+          $conveyance->disto= $request->input('travelto'.$i);
+          $conveyance->distance=$request->input('distance'.$i);
+          $conveyance->amount=$request->input('Rate'.$i);
+          $conveyance->mode= $request->input('mode'.$i);
+            $conveyance->uploadcimg=$filename;
+
+            $conveyance->sip=\Request::ip();
+
+             $conveyance->save();  
+
+
+      }
+        
+        Session::flash('message','Your Conveyance Added Successfully !!');
+        return redirect()->route('conveyance.index');
+       
     }
 
     /**

@@ -4,7 +4,7 @@
 <head>
   
     <title>IIFM MIS</title>
-    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Main CSS-->
     {!!View('partials.include_css')!!}
 
@@ -20,24 +20,18 @@
     <!-- Sidebar menu-->
     {!!View('partials.sidebar')!!}
 
-
     
     <!-- Main Content-->
   
 <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-th-list"></i> Leave Management</h1>
+          <h4><i class="fa fa-th-list"></i> Leave Management <a href="{{url('/leave-view')}}" class="btn btn-primary fa fa-eye">View Your Leaves</a></h4>
         </div>
-        <ul class="app-breadcrumb breadcrumb">
-          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-          <li class="breadcrumb-item">User Profile</li>
-          <li class="breadcrumb-item"><a href="#">User Profile Edit</a></li>
-        </ul>
       </div>
       <div class="row">
         <a href="{{URL::previous()}}" class="fa fa-arrow-circle-left btn btn-primary btn-lg"> Back</a>
-        <form action="{{url('/leave-store')}}" method="post">
+        <form action="{{url('/leave-store')}}" method="post" autocomplete="off">
 
             {{ csrf_field() }}
       <div id="official_info" class="row">
@@ -61,7 +55,7 @@
               <div class="col-md-4"> 
               <div class="form-group">
                    <strong><label for="">Mobile</label></strong> 
-                    <input class="form-control" id="mobile" name="mobile" type="text" aria-describedby="emailHelp" placeholder="Mobile">
+                    <input class="form-control" id="mobile" name="mobile" type="text" aria-describedby="emailHelp" placeholder="Mobile" required>
                 </div>
              </div>
              
@@ -69,19 +63,19 @@
              <div class="col-md-4"> 
               <div class="form-group">
                   <strong><label for="">Leave Start Date</label></strong>  
-                    <input class="form-control demoDate" id="leavefrom" name="leavefrom" type="text" aria-describedby="emailHelp" placeholder="Start Date">
+                    <input class="form-control" id="leavefrom" name="leavefrom" type="text" aria-describedby="emailHelp" placeholder="Start Date" required>
                 </div>
              </div>
              <div class="col-md-4"> 
               <div class="form-group">
                    <strong> <label for="">Leave End Date</label></strong>
-                    <input class="form-control demoDate" id="leaveto" name="leaveto" type="text" aria-describedby="emailHelp" placeholder="End Date">
+                    <input class="form-control" id="leaveto" name="leaveto" type="text" aria-describedby="emailHelp" placeholder="End Date" required>
                 </div>
              </div>
              <div class="col-md-4"> 
               <div class="form-group">
                 <strong><label for="">Total Leaves (In Days)</label></strong>    
-                    <input class="form-control" id="totdays" name="totdays" type="text" aria-describedby="emailHelp" placeholder="Auto Calculated" readonly="">
+                    <input class="form-control" id="totdays" name="totdays" type="text" aria-describedby="emailHelp" placeholder="Auto Calculated" readonly>
                 </div>
              </div>
              <div class="col-md-3"> 
@@ -96,13 +90,13 @@
              <div class="col-md-9"> 
               <div class="form-group">
                     <strong><label for="">Reason</label></strong>
-                    <textarea class="form-control" name="reason" id="reason" rows="5" placeholder="Explain your reason for leave"></textarea>
+                    <textarea class="form-control" name="reason" id="reason" rows="5" placeholder="Explain your reason for leave" required></textarea>
                 </div>
              </div>
 
              <div class="col-md-6"> 
               <h5 style="font-weight:bold;color: red!important; margin-bottom: 10px;  font-family: Times New Roman">Select Sunday Date against Comp off (In case of comp off only)</h5>
-              <input type="text" class="form-control demoDate" name="agdcompoff" id="agdcompoff" placeholder="Pic a date">
+              <input type="text" class="form-control" name="agdcompoff" id="agdcompoff" placeholder="Pic a date" >
              </div>
              <div class="col-md-6"> 
               
@@ -162,18 +156,81 @@
       </div>
       
         
-        </form>
+    </form>
 </div>
 
  </main>
 
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   
+<script>
+ $(document).ready(function(){
+  
+    var $datepicker1 =  $( "#leavefrom" );
+    var $datepicker2 =  $( "#leaveto" );
+  var $datepicker3 =  $( "#agdcompoff" );
+  
+  $datepicker1.datepicker({
+    minDate: 0,
+        onClose: function() {     
+      var fromDate = $datepicker1.datepicker('getDate');
+      var currentDate = new Date();  
+      var curdatecheck = new Date(currentDate - fromDate);
+      var firstdate = curdatecheck/1000/60/60/24;
+      if(firstdate>1) {
+       
+      }
+      $(this).prop( "readOnly", true ); 
+    },
+    }); 
 
-    <!-- Essential javascripts for application to work-->
-    {!!View('partials.include_js')!!}
+    $datepicker2.datepicker({
+        onClose: function() {
+      
+            var fromDate = $datepicker1.datepicker('getDate');
+            var toDate = $datepicker2.datepicker('getDate');
+      
+            // date difference in millisec
+            var diff = new Date(toDate - fromDate);
+            // date difference in days
+            var days = diff/1000/60/60/24;
+ 
+           // alert(days);
+        if(fromDate==null){
+        alert('Please Select Start Date First');
+        document.getElementById('leaveto').value=null;
+        document.getElementById('totdays').value=null;
+      }
+      else if(days<0 || days>100 && fromDate!= '' ) {
+        alert('To date should be onward date');
+        document.getElementById('leaveto').value=null;
+        document.getElementById('totdays').value=null;
+      }
+      
+      else {
+         document.getElementById('totdays').value=days+1;
+      }
+      $(this).prop( "readOnly", true ); 
+        }
+    });
 
-    
+    // Enable Sunday only
+  $datepicker3.datepicker({
+      minDate: -14,
+        maxDate: 0,
+      beforeShowDay: enableSUNDAYS
+  });
+
+  // Custom function to enable SUNDAY only in jquery calender
+  function enableSUNDAYS(date) {
+      var day = date.getDay();
+      return [(day == 0), ''];
+  }
+});
+ </script>
+
   </body>
 
-<!-- Mirrored from pratikborsadiya.in/vali-admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Jul 2018 06:07:27 GMT -->
+<!-- Mirrored from pratikborsadiya.in/vali-admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Jul 2018 06:07:27 GMT
 </html>
 

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Attendance;
+use Auth;
+use Session;
 class AttendanceController extends Controller
 {
     /**
@@ -13,6 +15,34 @@ class AttendanceController extends Controller
      */
     public function index()
     {
+      /* $date=date("d/m/y");
+       $type="IN";
+       $id=Auth::user()->id;
+
+
+        $attendance1=Attendance::where('member_id','=',$id)
+        ->where('date',$date)
+        ->where('type',$type)->get();
+
+        if (count($attendance1)==0) {
+            $typecheck="IN";
+        }
+        else{
+        $attendance2=Attendance::where('member_id','=',$id)
+        ->where('date',$date)
+        ->where('type','OUT')->get();
+            if (count($attendance2)==0) {
+               $typecheck="OUT";
+            }
+            else{
+                $typecheck="DONE";
+            }
+
+        }
+
+        Session::flash('errorMsg','Trun ON your Mobile GPS/Location & RELOAD the page');
+        Session::flash('successMsg','Your Attendance Recorded successfully');*/
+        
         return view('mis.attendance.index');
     }
 
@@ -34,7 +64,7 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       dd($request->all());
     }
 
     /**

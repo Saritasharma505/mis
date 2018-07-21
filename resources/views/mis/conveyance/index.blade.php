@@ -24,14 +24,14 @@
    <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-th-list"></i> Conveyance Management</h1>
+          <h4><i class="fa fa-th-list"></i> Conveyance Management <a href="{{url('/conveyance')}}" class="btn btn-primary fa fa-plus "> ADD Conveyance</a>
+             <a href="{{url('/conveyance/policy')}}" class="btn btn-primary fa fa-eye"> View Conveyance Policy</a></h4>
         </div>
       
       </div>
       <div class="row">
         <div class="col-md-12">
-            <a href="{{url('/conveyance/create')}}" class="btn btn-primary fa fa-plus btn-lg"> ADD Conveyance</a>
-             <a href="{{url('/conveyance/policy')}}" class="btn btn-primary fa fa-eye btn-lg"> View Conveyance Policy</a>
+            
 
           <div class="tile">
             <div class="tile-body">
@@ -50,37 +50,46 @@
         <div id="alert" class="alert alert-success">{{ Session::get('message') }}
 
         </div><?php } ?>
-              <table class="table table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+      
+              <table class="table table-hover table-stripped" id="sampleTable" role="grid" >
                 <thead>
                   <tr role="row">
                     <th>#</th>
-                    <th>Leave Type</th>
-                    <th>Start Date</th>
-                    <th >End Date </th>
-                    <th>Reason</th>
+                    <th>Conveyance Date</th>
+                    <th>Travel From</th>
+                    <th >Travel To</th>
+                    <th>Travel Mode</th>
+                    <th>Distance</th>
+                    <th>Amount</th>
                     <th>Status</th>
-                    <th style="text-align: center; table-layout: fixed;">Approval From</th>
                     <th style="width: 20%">Action</th>
                   </tr>
                 </thead>
+                @foreach($conveyance as $con)
                 <tbody>
-                  
-          
                 <tr role="row" class="odd">
                     <td><?= $i++;?></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td ></td>
-                    <td ><a href="" class="btn btn-primary fa fa-pencil"></a>
+                    <td>{{$con->con_date}}</td>
+                    <td>{{$con->disfrom}}</td>
+                    <td>{{$con->disto}}</td>
+                    @if($con->mode=="3.5")
+                    <td>CAR</td>
+                    @elseif($con->mode=="2.5")
+                     <td>BIKE</td>
+                     @else
+                     <td>{{$con->mode}}</td>
+                     @endif
+                    <td>{{$con->distance}}</td>
+                    <td>{{$con->amount}}</td>
+                    <td>{{$con->status}}</td>
+                    <td><a href="" class="btn btn-primary fa fa-pencil"></a>
                         <a href="" onclick="return confirm('Are You Sure Want to delete this?')" class="btn btn-danger fa fa-trash"></a>
                     </td>
                   </tr>
-               
         </tbody>
+        @endforeach
           </table>
+          
         </div>
       </div>
       <div class="row">

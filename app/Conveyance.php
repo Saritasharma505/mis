@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Conveyance extends Model
 {
-   protected $fillable=['date','reason','disfrom','disto','mode','distance','paid','amount','uploadcimg'];
+   protected $fillable=['user_id','date','reason','disfrom','disto','mode','distance','paid','amount','sip'];
 }
 	

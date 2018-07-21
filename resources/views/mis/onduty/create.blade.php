@@ -7,7 +7,8 @@
     
     <!-- Main CSS-->
     {!!View('partials.include_css')!!}
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
 
   </head>
   
@@ -26,14 +27,16 @@
   
 <main class="app-content">
       <div class="app-title">
+
         <div>
-          <h1><i class="fa fa-th-list"></i> On-Duty Management</h1>
+           <h4><i class="fa fa-th-list"></i>On-Duty Management  <a href="{{url('/on-duty/index')}}" class="btn btn-primary fa fa-eye">View Your OD</a></h4>
+ 
         </div>
       
       </div>
       <div class="row">
         <a href="{{URL::previous()}}" class="fa fa-arrow-circle-left btn btn-primary btn-lg"> Back</a>
-        <form action="{{url('/on-duty/store')}}" method="post">
+        <form action="{{url('/on-duty/store')}}" method="post" autocomplete="off">
 
             {{ csrf_field() }}
       <div id="official_info" class="row">
@@ -65,7 +68,7 @@
              <div class="col-md-4"> 
               <div class="form-group">
                   <strong><label for="">OD Date</label></strong>  
-                    <input class="form-control demoDate" id="od_date" name="od_date" type="text" aria-describedby="emailHelp" placeholder="Start Date">
+                    <input class="form-control" id="od_date" name="od_date" type="text" aria-describedby="emailHelp" placeholder="Start Date">
                 </div>
              </div>
              <div class="col-md-4"> 
@@ -165,8 +168,14 @@
 
 
     <!-- Essential javascripts for application to work-->
-    {!!View('partials.include_js')!!}
-
+   <!--  {!!View('partials.include_js')!!} -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#od_date" ).datepicker({minDate:0});
+  } );
+  </script>
     
   </body>
 

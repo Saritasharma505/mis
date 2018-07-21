@@ -41,13 +41,10 @@ Route::post('/user-family/add', 'UserDetailController@familyAdd');
 
 
 
-
-
-
-
 //leave routes
-Route::get('/leave', 'LeaveController@index')->name('leave.index');
+Route::get('/leave', 'LeaveController@create');
 Route::get('/leave-add', 'LeaveController@create')->name('leave.create');
+Route::get('/leave-view', 'LeaveController@index')->name('leave.index');
 Route::post('/leave-store', 'LeaveController@store');
 Route::post('/leave-edit/{id}', 'LeaveController@store');
 Route::get('/leave-delete/{id}', 'LeaveController@destroy');
@@ -55,13 +52,18 @@ Route::get('/leave-delete/{id}', 'LeaveController@destroy');
 
 //attendance routes
 Route::get('/attendance', 'AttendanceController@index')->name('attendance.index');
+Route::post('/attendance/store', 'AttendanceController@store');
 
 //photo-album routes
 Route::get('/photo-album', 'PhotoAlbumController@index')->name('photo.index');
+Route::get('/photo-album/create', 'PhotoAlbumController@create')->name('photo.create');
+Route::post('/photo-album/store', 'PhotoAlbumController@store');
+Route::post('/photo-album/add-category', 'PhotoAlbumController@addCategory');
+
 
 //conveyance routes
-Route::get('/conveyance', 'ConveyanceController@index')->name('conveyance.index');
-Route::get('/conveyance/create', 'ConveyanceController@create')->name('conveyance.index');
+Route::get('/conveyance', 'ConveyanceController@create');
+Route::get('/conveyance/index', 'ConveyanceController@index')->name('conveyance.index');
 Route::post('/conveyance/store', 'ConveyanceController@store');
 Route::get('/conveyance/policy', 'ConveyanceController@show');
 
@@ -79,8 +81,10 @@ Route::post('/hall-of-fame/store', 'EOFController@store');
 Route::get('/reimbursement', 'LeaveController@index')->name('reimbursement.index');
 
 //on-duty routes
-Route::get('/on-duty', 'OnDutyController@index')->name('od.index');
+Route::get('/on-duty', 'OnDutyController@create');
+
 Route::get('/on-duty/create', 'OnDutyController@create');
+Route::get('/on-duty/index', 'OnDutyController@index')->name('od.index');
 Route::get('/on-duty/edit/{id}', 'OnDutyController@edit');
 Route::get('/on-duty/delete/{id}', 'OnDutyController@destroy');
 Route::post('/on-duty/store', 'OnDutyController@store');
