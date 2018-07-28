@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Attendance;
 use Auth;
 use Session;
+
 class AttendanceController extends Controller
 {
     /**
@@ -14,36 +15,52 @@ class AttendanceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-      /* $date=date("d/m/y");
-       $type="IN";
+    {   
+       $date=date("Y-m-d");
        $id=Auth::user()->id;
+       $typecheck='';
 
-
-        $attendance1=Attendance::where('member_id','=',$id)
+       $inTime=Attendance::where('member_id','=',$id)
         ->where('date',$date)
-        ->where('type',$type)->get();
+        ->where('type','IN')
+        ->get();
 
-        if (count($attendance1)==0) {
+        foreach ($inTime as  $value) {
+            $inTime=$value->time;
+            Session::put('inTime',$inTime);
+        }
+
+        $outTime=Attendance::where('member_id','=',$id)
+        ->where('date',$date)
+        ->where('type','OUT')
+        ->get();
+         foreach ($outTime as  $value) {
+            $inTime=$value->time;
+            Session::put('outTime',$inTime);
+        }
+        
+        $attendanceIn=Attendance::where('member_id','=',$id)
+        ->where('date',$date)->get();
+
+        if (count($attendanceIn)==0) {
             $typecheck="IN";
+            Session::put('attendType',$typecheck);
         }
-        else{
-        $attendance2=Attendance::where('member_id','=',$id)
-        ->where('date',$date)
-        ->where('type','OUT')->get();
-            if (count($attendance2)==0) {
-               $typecheck="OUT";
-            }
-            else{
-                $typecheck="DONE";
-            }
-
+        else if(count($attendanceIn)==1)
+        {
+            $typecheck="OUT";
+            Session::put('attendType',$typecheck);
+        }
+        else 
+        {
+            $typecheck="ATTENDANCE FOR TODAY HAVE BEEN MARKED!!";
+            Session::put('attendType',$typecheck);
         }
 
-        Session::flash('errorMsg','Trun ON your Mobile GPS/Location & RELOAD the page');
+      /*  Session::flash('errorMsg','Trun ON your Mobile GPS/Location & RELOAD the page');
         Session::flash('successMsg','Your Attendance Recorded successfully');*/
         
-        return view('mis.attendance.index');
+        return view('mis.attendance.index',compact(['inTime','outTime']));
     }
 
     /**
@@ -62,9 +79,13 @@ class AttendanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-       dd($request->all());
+       Attendance::create($request->all());
+       Session::flash('message','Your Attendance Recorded successfully!!');
+
+       return redirect()->route('attendance.index');
     }
 
     /**

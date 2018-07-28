@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  
 <head>
-  
     <title>IIFM MIS</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Main CSS-->
@@ -10,9 +8,7 @@
     <style type="text/css">
       .formdiv{border: 2px solid #e1e1e1;}
       .input_fields_wrap div{float: left !important; margin-bottom:10px;  }
-
       .input_fields_wrap input{ height: 30px; }
-
     </style>
 
   <script>
@@ -20,14 +16,10 @@
     var max_fields      = 10; //maximum input boxes allowed
     var wrapper         = $(".input_fields_wrap"); //Fields wrapper
     var add_button      = $(".add_field_button"); //Add button ID
-    
     var x = 1; //initlal text box count
     $(add_button).click(function(e){ //on add input button click
       e.preventDefault();
       $("#tcount").val(x);
-      //var element = document.createElement('hr');
-            //var hr = document.body.appendChild(element);
-      //var hr = $('<hr />')[0];
       
       if(x < max_fields){ //max input box allowed
         $(wrapper).append(
@@ -37,21 +29,18 @@
       }
     });
     
-    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+   $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
       e.preventDefault(); 
       //get id 
       var id = $(this).attr('id');
       $('#formdiv'+id).remove();
       x--;
-
-     
       //$("#tcount").val(x-1);
     })
-
     $('body').on('focus',".datepick", function(){
       <?php
       $date = date("d");
-            if($date <= '12'){
+      if($date <= '12'){
         $prevmonth = date('01 F Y', strtotime('-1 months'));
       ?>
       $(this).datepicker({ 
@@ -64,7 +53,6 @@
       });
       <?php
       }
-      
       else{
         $currmonth = date('01 F Y');
       ?>
@@ -79,31 +67,23 @@
       <?php 
       }
       ?>
-      //$(this).prop( "disabled", true );
+      
     });
-
     $(document).on('change','.ratefind',function(){
       
       var e_id = $(this).attr("id");
       var res = e_id.split("_");     
       var scount = res[1];
-
       var tmode=$('#mode_'+scount+' > option:selected').text();
 
       if(tmode=='CAR' || tmode=='BIKE'){
         $('#Rate_'+scount).val('');
         $('#amt_'+scount).val('');
-        $('#amt_'+scount).prop( "disabled", true );
-        
+        $('#amt_'+scount).prop( "disabled", true );  
         var dis = $('#distance_'+scount).val();
-
         if(tmode=='CAR'){var rate = 3.5;} else{var rate = 2.5;}
-
-        var disc = dis*rate;
-
-        $('#Rate_'+scount).val(disc);
-
-      
+           var disc = dis*rate;
+        $('#Rate_'+scount).val(disc);      
       } 
      
       else if(tmode=='CAB' || tmode=='OTHERS' ){
@@ -117,13 +97,10 @@
           var dis = $('#distance_'+scount).val();
           var disc = amt;
           //var datastr = '&Rate'+scount+'=' + disc + '&varid='+scount;
-
           $('#Rate_'+scount).val(disc);
           $('#fileToUpload'+scount).prop("required",true);
           });
-        
-      } 
-            
+      }     
       else{
         $('#Rate_'+scount).val('');
         $('#amt_'+scount).val('');
@@ -135,14 +112,10 @@
           var dis = $('#distance_'+scount).val();
           var disc = amt;
           //var datastr = '&Rate'+scount+'=' + disc + '&varid='+scount;
-
           $('#Rate_'+scount).val(disc);
           
           });
-        
-      }
-      
-     
+      }  
     });
     
     $(document).on('keyup','.disclass',function(){
@@ -309,7 +282,6 @@
           $('#Rate_'+scount).val(disc);
           
           });
-        
       }   
     });
   });
@@ -341,57 +313,45 @@
     <!-- Main Content-->
   
 <main class="app-content">
-      <div class="app-title">
-        <div>
-          <h4><i class="fa fa-inr"></i> Conveyance Management<a href="{{url('/conveyance/index')}}" class="btn btn-primary fa fa-eye">View All Your Conveyances</a></h4> 
-        </div>
-
-        <a href="{{URL::previous()}}" class="fa fa-arrow-circle-left btn btn-primary btn-lg"> Back</a>
-      </div>
-
-      <form action="{{url('/conveyance/store')}}" method="post" style="width:100%" enctype="multipart/form-data">
-
-            {{ csrf_field() }}
-        
-      <div class="row tile" style="width:100%">
-            
-              <div class="col-md-12">
-             <div class="">
-                  <button class="add_field_button btn btn-primary" id="addformbtn">Add Fields</button>
-                <input id="tcount" type="hidden" value="" name="tcount" />
-              </div>
-            <div class="input_fields_wrap" style="margin-top:20px; ">
-             
-              
-              
-           
-            </div>
-            <div class="tile-footer" id="submitbtn">
-              <button class="btn btn-primary" type="submit">Submit</button>
-           
-            </div>
+  <div class="app-title">
+    <div>
+      <h4>
+        <i class="fa fa-inr"></i> Conveyance Management
+        <a href="{{url('/conveyance/index')}}" class="btn btn-primary fa fa-eye">View All Your Conveyances
+        </a>
+      </h4> 
+    </div>
+      <a href="{{URL::previous()}}" class="fa fa-arrow-circle-left btn btn-primary btn-lg"> Back</a>
+  </div>
+   <form action="{{url('/conveyance/store')}}" method="post" style="width:100%" enctype="multipart/form-data">
+      {{ csrf_field() }}
+    <div class="row tile" style="width:100%">
+      <div class="col-md-12">
+          <button class="add_field_button btn btn-primary" id="addformbtn">Add Fields</button>
+          <input id="tcount" type="hidden" value="" name="tcount" />  
+          <div class="input_fields_wrap" style="margin-top:20px; ">
+          
           </div>
-        </div>
+          <div class="tile-footer" id="submitbtn">
+             <button class="btn btn-primary" type="submit">Submit</button>
+          </div>
       </div>
-      
-        
-    </form>
+    </div>
+  </form>
 </div>
+</main>
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
+   <script src="{{ asset('js/main.js') }}" ></script>
 
- </main>
-
- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-   
 <script>
- $(document).ready(function(){
-  
+ $(document).ready(function(){ 
     var $datepicker1 =  $( "#leavefrom" );
     var $datepicker2 =  $( "#leaveto" );
-  var $datepicker3 =  $( "#agdcompoff" );
+    var $datepicker3 =  $( "#agdcompoff" );
   
   $datepicker1.datepicker({
     minDate: 0,
-        onClose: function() {     
+      onClose: function() {     
       var fromDate = $datepicker1.datepicker('getDate');
       var currentDate = new Date();  
       var curdatecheck = new Date(currentDate - fromDate);
@@ -402,18 +362,14 @@
       $(this).prop( "readOnly", true ); 
     },
     }); 
-
     $datepicker2.datepicker({
-        onClose: function() {
-      
-            var fromDate = $datepicker1.datepicker('getDate');
-            var toDate = $datepicker2.datepicker('getDate');
-      
-            // date difference in millisec
-            var diff = new Date(toDate - fromDate);
-            // date difference in days
-            var days = diff/1000/60/60/24;
- 
+      onClose: function() {
+        var fromDate = $datepicker1.datepicker('getDate');
+        var toDate = $datepicker2.datepicker('getDate');
+        // date difference in millisec
+        var diff = new Date(toDate - fromDate);
+        // date difference in days
+        var days = diff/1000/60/60/24;
            // alert(days);
         if(fromDate==null){
         alert('Please Select Start Date First');
@@ -449,7 +405,5 @@
  </script>
 
   </body>
-
-<!-- Mirrored from pratikborsadiya.in/vali-admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Jul 2018 06:07:27 GMT
 </html>
 

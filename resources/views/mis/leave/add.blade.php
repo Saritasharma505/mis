@@ -160,8 +160,11 @@
 </div>
 
  </main>
+  <!--   {!!View('partials.include_js')!!} -->
 
  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <script src="{{ asset('js/main.js') }}" ></script>
+
    
 <script>
  $(document).ready(function(){

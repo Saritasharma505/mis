@@ -1,5 +1,6 @@
-<div class="app-sidebar__overlay sidebar" data-toggle="sidebar"></div>
-    <aside class="app-sidebar">
+
+<div class="sidebar" data-toggle="sidebar" ></div>
+    <aside class="app-sidebar" style="overflow: scroll">
       @if(Session::has('profile'))
       <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" height="60px" width="60px;" src="{{ url('storage/profile/'.Session::get('profile')) }}" alt="User Image">
         <div>
@@ -26,6 +27,18 @@
           <li><a class="app-menu__item" href="{{url('/conveyance')}}"><i class="app-menu__icon fa fa-inr"></i><span class="app-menu__label">Conveyance</span></a></li>
             <li><a class="app-menu__item" href="{{url('/hall-of-fame')}}"><i class="app-menu__icon fa fa-trophy"></i><span class="app-menu__label">Hall OF Fame</span></a></li>
              <li><a class="app-menu__item" href="{{url('/photo-album')}}"><i class="app-menu__icon fa fa-file-image-o"></i><span class="app-menu__label">Photo Album</span></a></li>
-              <li><a class="app-menu__item" href="{{url('/photo-album')}}"><i class="app-menu__icon fa fa-comment"></i><span class="app-menu__label">Feedback</span></a></li>
+             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file"></i><span class="app-menu__label">Report</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="{{url('/conveyance-report')}}"><i class="icon fa fa-inr"></i>Conveyance Report</a></li>
+            
+          </ul>
+        </li>
+          <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file"></i><span class="app-menu__label">Inventory Management</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="{{route('product.index')}}"><i class="icon fa fa-product-hunt"></i>  Product</a></li>
+             <li><a class="treeview-item" href="{{route('assign.index')}}"><i class="icon fa fa-tasks"></i>Allocate Product</a></li>
+            
+          </ul>
+        </li>
       </ul>
     </aside>

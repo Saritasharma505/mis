@@ -50,23 +50,23 @@
 
              <strong><h4>Father's Detail</h4></strong>
              <hr>
-              <div class="col-md-6"> 
+              <div class="col-md-4"> 
               <div class="form-group">
                     <label for="exampleInputEmail1">Father Name</label>
-                    <input class="form-control" id="fname" name="fname" type="text" aria-describedby="emailHelp" placeholder="Father Name">
+                    <input class="form-control" id="fname" name="fname" type="text" aria-describedby="emailHelp" placeholder="Father Name" required="">
                 </div>
              </div>
 
-              <div class="col-md-6"> 
+              <div class="col-md-4"> 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Father's Occuption</label>
-                    <input class="form-control" id="foccup" name="foccup" type="text" aria-describedby="emailHelp" placeholder="Father's Occuption">
+                    <input class="form-control" id="foccup" name="foccup" type="text" aria-describedby="emailHelp" placeholder="Father's Occuption" required="">
                 </div>
              </div>
-              <div class="col-md-6"> 
+              <div class="col-md-4"> 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Father's Contact Number</label>
-                    <input class="form-control" id="fcontact" name="fcontact" type="text" aria-describedby="emailHelp" placeholder="Father's Contact Number">
+                    <input class="form-control" id="fcontact" name="fcontact" type="text" aria-describedby="emailHelp" placeholder="Father's Contact Number" required="">
              </div>
             </div>
 
@@ -82,23 +82,23 @@
 
        <strong><h4>Mother's Detail</h4></strong>
              <hr>
-              <div class="col-md-6"> 
+              <div class="col-md-4"> 
               <div class="form-group">
                     <label for="exampleInputEmail1">Mother Name</label>
-                    <input class="form-control" id="mname" name="mname" type="text" aria-describedby="emailHelp" placeholder="Mother Name">
+                    <input class="form-control" id="mname" name="mname" type="text" aria-describedby="emailHelp" placeholder="Mother Name" required="">
                 </div>
              </div>
 
-              <div class="col-md-6"> 
+              <div class="col-md-4"> 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Mother's Occuption</label>
-                    <input class="form-control" id="moccup" name="moccup" type="text" aria-describedby="emailHelp" placeholder="Mother's Occuption">
+                    <input class="form-control" id="moccup" name="moccup" type="text" aria-describedby="emailHelp" placeholder="Mother's Occuption" required="">
                 </div>
              </div>
-              <div class="col-md-6"> 
+              <div class="col-md-4"> 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Mother's Contact Number</label>
-                    <input class="form-control" id="mcontact" name="mcontact" type="text" aria-describedby="emailHelp" placeholder="Mother's Contact Number">
+                    <input class="form-control" id="mcontact" name="mcontact" type="text" aria-describedby="emailHelp" placeholder="Mother's Contact Number" required="">
              </div>
           </div>
 
@@ -114,9 +114,9 @@
               <div class="form-group">
                     <label for="exampleInputEmail1">Marital Status</label>
                     <select class="form-control" name="maritalstatus" id="maritalstatus">
-                      <option>Select Your Marital Status</option>
-                      <option>Single</option>
-                      <option>Married</option>
+                      <option value="">Select Your Marital Status</option>
+                      <option value="Single">Single</option>
+                      <option value="Married">Married</option>
                     </select>
                 </div>
              </div>
@@ -124,7 +124,7 @@
               <div class="col-md-6"> 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Spouse Name</label>
-                    <input class="form-control" id="spname" name="spname" type="text" aria-describedby="emailHelp" placeholder="Spouse Name">
+                    <input class="form-control" id="spname" name="spname" type="text" aria-describedby="emailHelp" placeholder="Spouse Name"  >
                 </div>
              </div>
               <div class="col-md-6"> 

@@ -45,6 +45,7 @@ class ConveyanceController extends Controller
     {
      
       $count = $request->input('tcount');
+      $filename='';
 
       for ($i=1; $i <= $count ; $i++) { 
          $file = $request->file('uploadfile'.$i);
@@ -65,8 +66,12 @@ class ConveyanceController extends Controller
           $conveyance->distance=$request->input('distance'.$i);
           $conveyance->amount=$request->input('Rate'.$i);
           $conveyance->mode= $request->input('mode'.$i);
-            $conveyance->uploadcimg=$filename;
 
+          if ($filename!='') {
+               $conveyance->uploadcimg=$filename;
+
+          }
+           
             $conveyance->sip=\Request::ip();
 
              $conveyance->save();  

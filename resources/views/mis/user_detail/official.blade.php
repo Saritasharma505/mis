@@ -57,41 +57,41 @@
             <div class="col-md-6"> 
               <div class="form-group">
                     <label for="exampleInputEmail1">Name</label>
-                    <input class="form-control" id="name" name="name" type="text" aria-describedby="emailHelp" placeholder="Full Name" value="{{Auth::user()->name}}">
+                    <input class="form-control" id="name" name="name" type="text" aria-describedby="emailHelp" placeholder="Full Name" value="{{Auth::user()->name}}" required="">
                 </div>
              </div>
               <div class="col-md-6"> 
               <div class="form-group">
                     <label for="exampleInputEmail1">Email ID</label>
-                    <input class="form-control" id="email" name="email" type="text" aria-describedby="emailHelp" value="{{Auth::user()->email}}" placeholder="Email ID(Only Official Email-ID)">
+                    <input class="form-control" id="email" name="email" type="email" aria-describedby="emailHelp" value="{{Auth::user()->email}}" placeholder="Email ID(Only Official Email-ID)" required="">
                 </div>
              </div>
               <div class="col-md-6"> 
               <div class="form-group">
                     <label for="exampleInputEmail1">Mobile Number</label>
-                    <input class="form-control" id="mobile" name="mobile" type="text" aria-describedby="emailHelp" placeholder="Mobile Number">
+                    <input class="form-control" id="mobile" name="mobile" type="text" aria-describedby="emailHelp" placeholder="Mobile Number" required="" maxlength="10">
                 </div>
              </div>
 
               <div class="col-md-6"> 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Designation</label>
-                    <input class="form-control" id="designation" name="designation" type="text" aria-describedby="emailHelp" placeholder="Designation">
+                    <input class="form-control" id="designation" name="designation" type="text" aria-describedby="emailHelp" placeholder="Designation" required="">
                 </div>
              </div>
                <div class="col-md-6"> 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Department</label>
-                    <select class="form-control" name="department" id="department">
-                      <option>Select Department</option>
-                      <option>Information Technology(IT)</option>
-                      <option>SALES</option>
-                      <option>ACADEMIC</option>
-                      <option>FINANCE</option>
-                      <option>ADMIN</option>
-                      <option>MARKETTING</option>
-                      <option>TELE COUNSELLING</option>
-                      <option>OTHERS</option>
+                    <select class="form-control" name="department" id="department" required="">
+                      <option value="">Select Department</option>
+                      <option value="Information Technology(IT)">Information Technology(IT)</option>
+                      <option value="SALES">SALES</option>
+                      <option value="ACADEMIC">ACADEMIC</option>
+                      <option value="FINANCE">FINANCE</option>
+                      <option value="ADMIN">ADMIN</option>
+                      <option value="MARKETTING">MARKETTING</option>
+                      <option value="TELE COUNSELLING">TELE COUNSELLING</option>
+                      <option value="OTHERS">OTHERS</option>
                     </select>
                 </div>
              </div>
@@ -99,20 +99,20 @@
               <div class="col-md-6"> 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Location/Centre</label>
-                   <input class="form-control" id="locationcentre" name="locationcentre" type="text" aria-describedby="emailHelp" placeholder="Location/Centre">
+                   <input class="form-control" id="locationcentre" name="locationcentre" type="text" aria-describedby="emailHelp" placeholder="Location/Centre" required="">
                 </div>
             </div>
             <div class="col-md-6"> 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Date of Joining</label>
-                   <input class="form-control demoDate" id="doj" name="doj" type="text" aria-describedby="emailHelp" placeholder="Date of Joining">
+                   <input class="form-control demoDate" id="doj" name="doj" type="text" aria-describedby="emailHelp" placeholder="Date of Joining" required="">
                 </div>
             </div>
 
             <div class="col-md-6"> 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Profile Photo</label>
-                   <input class="form-control" id="profile" name="profile" type="file" aria-describedby="emailHelp" placeholder="Profile Photo">
+                   <input class="form-control" id="profile" name="profile" type="file" aria-describedby="emailHelp" placeholder="Profile Photo" required="">
                 </div>
             </div>
 
@@ -120,10 +120,9 @@
           </li>
         </ul>
        
-    <div class="tile-footer">
-              <button class="btn btn-success fa fa-save" type="submit">  Submit</button>
-           
-            </div>
+       <div class="tile-footer">
+              <button class="btn btn-success fa fa-save" type="submit"> Submit</button>     
+      </div>
             </form> 
         </div>
       </div>

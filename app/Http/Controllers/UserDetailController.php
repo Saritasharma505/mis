@@ -23,7 +23,7 @@ class UserDetailController extends Controller
     {
        
          $id=Auth::user()->id;
-
+ 
          $user_detail =UserDetails::where('user_id',$id)->get();
           foreach ($user_detail as  $value) {    
             $profile=$value->profile; 
@@ -66,15 +66,42 @@ class UserDetailController extends Controller
        return view('mis.user_detail.education',compact('education_options'));
     }
 
-
      public function educationAdd(Request $request){
+         //$date= $request->except('certificate');
+        $user_id=Auth::user()->id;
+         $edu_option=$request->input('edu_option');
+         $schoolname=$request->input('schoolname');
+         $board=$request->input('board');
+         $specialization=$request->input('specialization');
+         $strtyear=$request->input('strtyear');
+         $endyear=$request->input('endyear');
+         $percentage=$request->input('percentage');
+         $sip=\Request::ip();
 
-        UserEducation::create($request->all());
+         $addedby=Auth::user()->name;
+         $certificate=$request->file('certificate');
+
+        $filename=$user_id.'_'.$addedby.'_'.$certificate->getClientOriginalName();
+        
+        $certificate->storeAs('/public/education', $filename);
+
+        UserEducation::create(['user_id'=>$user_id,'edu_option'=>$edu_option,'schoolname'=>$schoolname,'board'=>$board,'certificate'=>$filename,'specialization'=>$specialization,'strtyear'=>$strtyear,'endyear'=>$endyear,'percentage'=>$percentage,'sip'=>$sip,'addedby'=>$addedby]);
         Session::flash('message','Your Details Updated Successfully !!');
         return redirect()->route('user.index');
 
     }
 
+    public function educationDelete($id){
+        UserEducation::where('id',$id)->delete();
+         Session::flash('message','Your Details Updated Successfully !!');
+        return redirect()->route('user.index');
+    }
+
+    public function professionalDelete($id){
+        UserWorkExperience::where('id',$id)->delete();
+         Session::flash('message','Your Details Updated Successfully !!');
+        return redirect()->route('user.index');
+    }
 
      public function professional()
     {
@@ -82,8 +109,24 @@ class UserDetailController extends Controller
     }
 
      public function professionalAdd(Request $request){
-       
-        UserWorkExperience::create($request->all());
+        $user_id=Auth::user()->id;
+        $sip=\Request::ip();
+        $company=$request->input('company');
+        $fromdate=$request->input('fromdate');
+        $todate=$request->input('todate');
+        $designation1=$request->input('designation1');
+        $address=$request->input('address');
+        $addedby=Auth::user()->name;
+
+        $offerletter=$request->file('offerletter');
+        $relievingletter=$request->file('relievingletter');
+
+        $offer=$user_id.'_'.$addedby.$offerletter->getClientOriginalName();
+        $offerletter->storeAs('public/professional',$offer);
+        $relieving=$user_id.'_'.$addedby.$relievingletter->getClientOriginalName();
+        $relievingletter->storeAs('public/professional',$relieving);
+
+        UserWorkExperience::create(['user_id'=>$user_id,'company'=>$company,'fromdate'=>$fromdate,'todate'=>$todate,'designation1'=>$designation1,'relievingletter'=>$relieving,'address'=>$address,'offerletter'=>$offer,'sip'=>$sip,'addedby'=>$addedby]);
         Session::flash('message','Your Details Updated Successfully !!');
         return redirect()->route('user.index');
 

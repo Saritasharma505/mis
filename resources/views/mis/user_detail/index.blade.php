@@ -44,12 +44,14 @@
     <img class="" width="100%" height="200" src="{{ URL::asset('images/user.png') }}" alt="Profile image">
     <div class="card-body">
       <h4 class="card-title" style="font-family: Times New Roman;text-align: center;">{{Auth::user()->name}}</h4>
+
       <p class="card-text" style="text-align: center">
     </div>
   </div> 
     </div>
      <div class="col-md-9 tile">
-       <h3 class="tile-title" style="font-family: Times New Roman">OFFICIAL INFORMATION  <a class="btn btn-success fa fa-plus" href="{{url('/user-official')}}"></a></h3>
+       <h3 class="tile-title" style="font-family: Times New Roman">OFFICIAL INFORMATION  <a class="btn btn-success fa fa-plus" href="{{url('/user-official')}}"></a> <a class="btn btn-success fa fa-pencil" href="{{url('/user-official')}}"></a></h3>
+
             <table class="table">
             <tr>
               <th>Email ID</th>
@@ -98,7 +100,10 @@
       
     </div>
      <div class="col-md-9 tile">
-       <h3 class="tile-title" style="font-family: Times New Roman">OFFICIAL INFORMATION  <a class="btn btn-success fa fa-pencil" href="{{url('/user-official')}}"></a></h3>
+       <h3 class="tile-title" style="font-family: Times New Roman">OFFICIAL INFORMATION  <a class="btn btn-success fa fa-pencil" href="{{url('/user-official')}}"></a> 
+         <!--  @if(Auth::user()->role=='Admin')
+        <a class="btn btn-info fa fa-eye" href="#"> VIEW ALL EMPLOYEE</a></h3>
+        @endif -->
             <table class="table">
             <tr>
               <th>Email ID</th>
@@ -137,16 +142,18 @@
      <h3 class="tile-title" style="font-family: Times New Roman">EDUCATIONAL INFORMATION <a href="{{url('/user-education/add')}}" class="btn btn-success fa fa-plus"></a> </h3>
       <table class="table-responsive table" >
           
-           <thead>
+           <thead >
             <tr>
               <th>#</th>
-              <th>Course Name</th>
+              <th width="10%">Course Name</th>
+               <th width="10%">College/Institution</th>
+              <th>Board/University</th>
               <th>Start Year</th>
               <th>End Year</th>
-              <th>College/Institution</th>
               <th>Specialization</th>
               <th>Percentage/Grades</th>
-              <th>Added By</th>
+              <th>Certificate</th>
+              <th>Action</th>
               <!-- <th>Action</th> -->
               
             </tr>
@@ -156,14 +163,17 @@
           <tbody>
             <tr>
               <td>{{$i++}}</td>
-              <td width="10%">{{$value->course_type}}</td>
+              <td >{{$value->course_type}}</td>
+               <td>{{$value->schoolname}}</td>
+              <td>{{$value->board}}</td>
               <td>{{$value->strtyear}}</td>
               <td>{{$value->endyear}}</td>
-              <td>{{$value->college}}</td>
               <td>{{$value->specialization}}</td>
               <td>{{$value->percentage}}</td>
-              <td>{{$value->addedby}}</td>
-             <!--  <td><a class="fa fa-pencil btn btn-primary" href="{{url('')}}/{{$value->id}}"></a></td>  -->
+
+              <td><a href="{{ url('storage/education/'.$value->certificate) }}" target="_blank"><img src="{{ url('storage/education/'.$value->certificate) }}"  height="50px" width="50px"></a></td>
+
+              <td><a href="{{url('/education-delete')}}/{{$value->id}}" class="btn btn-danger fa fa-trash" onclick="return confirm('Are you sure you want to delete this item?');"></a></td>
             </tr>
           @endforeach
           </tbody>
@@ -178,11 +188,14 @@
            <thead>
             <tr>
               <th>#</th>
-              <th style="width: 20%">Company Name</th>
-              <th style="width: 20%">Designation</th>
-              <th style="width: 20%">From</th>
-              <th style="width: 20%">To</th>
-              <th style="width: 20%">Company Address</th>
+              <th width="10%">Company Name</th>
+              <th width="10%">Designation</th>
+              <th width="10%">From</th>
+              <th width="10%">To</th>
+              <th width="20%">Company Address</th>
+              <th width="10%">Offer/Appointment Letter</th>
+              <th width="10%" align="center">Relieving/Experience Letter</th>
+               <th width="5%">Action</th>
              
               
             </tr>
@@ -197,6 +210,9 @@
               <td>{{$value->fromdate}}</td>
               <td>{{$value->todate}}</td>
               <td>{{$value->address}}</td>
+               <td><a href="{{ url('storage/professional/'.$value->offerletter) }}" target="_blank"><img src="{{ url('storage/professional/'.$value->offerletter) }}" alt="Click Here"  height="50px" width="50px"></a></td>
+               <td><a href="{{ url('storage/professional/'.$value->relievingletter) }}" target="_blank"><img src="{{ url('storage/professional/'.$value->relievingletter) }}" alt="Click Here"  height="50px" width="50px"></a></td>
+              <td><a href="{{url('/profession-delete')}}/{{$value->id}}" class="btn btn-danger fa fa-trash" onclick="return confirm('Are you sure you want to delete this item?');"></a></td>
             </tr>
           </tbody>
           @endforeach

@@ -85,7 +85,8 @@
                     <input class="form-control" id="cstate" name="cstate" type="text" aria-describedby="emailHelp" placeholder="State">
              </div>
             </div>
-
+          <strong> Check If Current and Permanent Adress Same</strong> 
+            <input type="checkbox" id="copyaddress" style="height: 15px; width: 15px; margin-left: 10px;">
              <strong><h4>Permanent Address</h4></strong>
              <hr>
               <div class="col-md-6"> 
@@ -132,7 +133,23 @@
     <!-- Essential javascripts for application to work-->
     {!!View('partials.include_js')!!}
 
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#copyaddress").on("click", function(){
+         if (this.checked) { 
+               $('#pcity').val($('#ccity').val());
+                $("#pstreet").val($("#cstreet").val());
+                $("#pstate").val($("#cstate").val());                  
+    }
+    else {
+         $("#pcity").val('');
+        $("#pstreet").val('');
+        $("#pstate").val('');        
+    }
+    });
+});
 
+</script>
 
 
   </body>

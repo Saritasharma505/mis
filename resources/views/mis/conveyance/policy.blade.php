@@ -3,83 +3,84 @@
   
 <head>
   
-    <title>IIFM MIS</title>
-    
+    <title>IIFM MIS</title> 
     <!-- Main CSS-->
     {!!View('partials.include_css')!!}
-
-
-  </head>
+</head>
   
-  <body class="app sidebar-mini rtl">
+<body class="app sidebar-mini rtl">
     <!-- Navbar-->
-    
     {!!View('partials.header')!!}
-
-
     <!-- Sidebar menu-->
     {!!View('partials.sidebar')!!}
-
-
-    
+ 
     <!-- Main Content-->
   <main class="app-content">
       <div class="app-title">
-
         <div>
           <h1><i class="fa fa-eye"></i> Conveyance Policy</h1>
-         
         </div>
-       
       </div>
         <a href="{{URL::previous()}}" class="fa fa-arrow-circle-left btn btn-primary btn-lg"> Back</a>
-
       <div class="row">
         <div class="col-md-12">
           <div class="tile">
             <div class="tile-body">
                 <div class="col-lg-12" style="font-weight:100 !important; background:#fff;"> 
-                      
-                         <p><strong style="text-transform:uppercase; font-family: Times New Roman"><u><br>
-                         Objective:</u></strong></p>
-                         <p style="font-weight:100 !important; font-family: Times New Roman">The  Conveyance Policy has been formulated to establish guidance and policy to provide procedures for the approval,  reimbursement, and control of travel expenses. </p>
+                  <p>
+                    <strong style="text-transform:uppercase; font-family: Times New Roman">
+                      <u><br>
+                         Objective:
+                       </u>
+                     </strong>
+                   </p>
+                    <p style="font-weight:100 !important; font-family: Times New Roman">The  Conveyance Policy has been formulated to establish guidance and policy to provide procedures for the approval,  reimbursement, and control of travel expenses. 
+                    </p><br>   
+                    <p>
+                      <strong style="text-transform:uppercase; font-family: Times New Roman">
+                        <u>Responsibility and Compliance:</u>
+                      </strong>
+                    </p>
+                      <ul type="disc">
+                        <li style="font-family: Times New Roman">The Traveller is responsible for:</li>
+                      </ul>
+                      <ul>
+                      <ul>
+                        <li style="font-family: Times New Roman">Complying with the Travel Policy
+                        </li>
+                        <li style="font-family: Times New Roman">Accurate submission of expenses items within policy  guidelines<strong></strong></li>
+                        <li style="font-family: Times New Roman">Presenting original receipts wherever applicable<strong></strong></li>
+                        <li style="font-family: Times New Roman">Timely Submission of   expense(s)<strong></strong></li>
+                      </ul>
+                        <li style="font-family: Times New Roman">Employee’s reporting supervisor is responsible  for reviewing and approving expenses. Approval is required on all expenses submitted. However, Supervisor’s approval does not mean final approval, which will be further reviewed by HR-Admin, Finance Head &amp; Director.<strong></strong>
+                        </li>
                          
-                           <br>
-                         <p></p>
-                           
-                           <p><strong style="text-transform:uppercase; font-family: Times New Roman"><u>Responsibility and Compliance:</u></strong></p>
-                         <ul type="disc">
-                           <li style="font-family: Times New Roman">The Traveller is responsible for:<strong></strong></li>
-                         </ul>
-                         <ul>
-                           <ul>
-                             <li style="font-family: Times New Roman">Complying with the Travel Policy<strong></strong></li>
-                             <li style="font-family: Times New Roman">Accurate submission of expenses items within policy  guidelines<strong></strong></li>
-                             <li style="font-family: Times New Roman">Presenting original receipts wherever applicable<strong></strong></li>
-                             <li style="font-family: Times New Roman">Timely Submission of   expense(s)<strong></strong></li>
-                           </ul>
-                         
-                           <li style="font-family: Times New Roman">Employee’s reporting supervisor is responsible  for reviewing and approving expenses. Approval is required on all expenses submitted. However, Supervisor’s approval does not mean final approval, which will be further reviewed by HR-Admin, Finance Head &amp; Director.<strong></strong></li>
-                         
-                           <li style="font-family: Times New Roman">The company  assumes no such obligation to reimburse employees for expenses that are not in  compliance with the policy.<br>
-                           </li>
-                         </ul>
-                         
-                         <!--<p>&nbsp;</p>-->
-                         <p><strong style="text-transform:uppercase;"><u>Eligibility:</u></strong>                         </p>
-                         <ul>
-                           <li style="font-family: Times New Roman"><strong>Four wheelers:</strong><br>
-                             <strong style="text-align:left;">Applicable  to </strong>: Deputy  Manager and above. <br>
-                           <strong style="text-align:left; font-family: Times New Roman">Rate :  </strong>Rs. 3.5/-per km  </li>
-                         </ul>
-                         <p  style="font-family: Times New Roman">*Outstation  travel by four wheelers has to be pre approved by Director only.<br>
-                           <br>
-                         </p>
-                         <ul>
+                       <li style="font-family: Times New Roman">The company  assumes no such obligation to reimburse employees for expenses that are not in  compliance with the policy.<br>
+                       </li>
+                      </ul>
+                      <p>
+                        <strong style="text-transform:uppercase;">
+                          <u>Eligibility:</u>
+                        </strong>                  
+                      </p>
+                      <ul>
+                        <li style="font-family: Times New Roman">
+                          <strong>Four wheelers:</strong><br>
+                          <strong style="text-align:left;">Applicable  to </strong>: Deputy  Manager and above. <br>
+                          <strong style="text-align:left; font-family: Times New Roman">Rate :  
+                          </strong>Rs. 3.5/-per km  
+                        </li>
+                      </ul>
+                        <p  style="font-family: Times New Roman">*Outstation  travel by four wheelers has to be pre approved by Director only.<br><br>
+                        </p>
+                        <ul>
                            <li  style="font-family: Times New Roman"><strong><u>Cab</u></strong></li>
-                         </ul>
-                         <p  style="font-family: Times New Roman"><strong>Applicable to&nbsp;: </strong>All employees<strong> </strong>for Specific purpose only with  prior approval from GM  or  AVP  or  Director
-                           </p><li><strong><u>Three  Wheeler</u></strong></li>
+                        </ul>
+                         <p  style="font-family: Times New Roman">
+                          <strong>Applicable to&nbsp;: 
+                          </strong>All employees for Specific purpose only with  prior approval from GM  or  AVP  or  Director
+                          </p>
+                           <li><strong><u>Three  Wheeler</u></strong></li>
                          
                          <p  style="font-family: Times New Roman"><strong>Applicable to : </strong>(a) Assistant Managers &amp; Above. <br>
              (b) Below Assistant Managers:&nbsp;  With prior approval from GM  or  AVP  or  Director.<br>
